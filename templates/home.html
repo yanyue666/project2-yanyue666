@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+{% block head %}
+		<meta charset="UTF-8">
+		<title>Home</title>
+		
+		<script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+		<script type="text/javascript" src="//cdn.bootcss.com/socket.io/1.5.1/socket.io.min.js"></script>
+
+
+{% endblock %}
+<body style="text-align: center;">
+	<div style="margin-top: 5%;">
+		<a href="/">Home</a>
+		<a href="/channel">channel list</a>
+		<div>
+			<h2>Hello {% block username %}{% endblock %}!</h2>
+		</div>
+	</div>
+	<div style="border: black solid 2px;width: 70%;height: 400px;margin: 5% 15% 0;">
+		{% block content %}
+		{% endblock %}
+	</div>
+	
+</body>
+</html>

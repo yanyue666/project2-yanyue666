@@ -1,0 +1,16 @@
+{% extends "home.html" %}
+{% block name %}Index{% endblock %}
+{% block username %} <b> {{username}}</b>{% endblock %}
+
+{% block content %}
+  
+	<form action="/" method="POST" style="margin-top: 10%">
+		<div>
+			Your Name:<input type="text" name="name">	
+		</div>
+		<br>
+		<button onclick="submit">Submit</button>
+	</form>		
+	
+
+{% endblock %}

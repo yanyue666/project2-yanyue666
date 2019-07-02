@@ -1,0 +1,62 @@
+{% extends "home.html" %}
+
+{% block head %}
+
+{% endblock %}
+{% block content %}
+	
+	<form action ="/" method="POST">
+		<div class="form-group">
+			<select id="select"class="form-control" name="name">
+			{%for i in arr%}
+				<option>{{i}}</option>
+			{% endfor %}
+			</select>
+			<button onclick="MessageView()">view Message</button>
+		</div>
+		<div >
+	</div>
+	</form>
+	<form id="formm" action="/channel" method="POST">
+			<input id="h"type="hidden" name="us" value="nono=">
+			<h2>Send Message</h2>
+			<div>Message:<input type="text" name="mes"></div>
+			<br>
+
+		<input type="submit" onclick="setId();">
+	</form>
+	
+	<script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/socket.io/1.5.1/socket.io.min.js"></script>
+	<div id="t"></div>
+
+	<script type="text/javascript">
+	
+	
+	function setId(us_id){
+		var us_id = $("#select option:selected").val();
+
+		document.getElementById("h").setAttribute("value",us_id);
+		document.getElementById("formm").submit();
+	}
+	document.addEventListener('DOMContentLoaded', () => {
+	
+
+    // Connect to websocket
+    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+
+    socket.on("message", data => {
+		var Data=document.getElementById("mess")
+		console.log(data)
+		var newdata=document.createElement("div")
+		newdata.innerHTML=data
+		Data.appendChild(newdata)
+    });
+});
+	</script>
+	<div id="mess" style=" overflow-y:scroll;border: black solid 2px;width: 40%;height: 150px;margin: 5% 15% 0;">
+		{% for i in mes %}
+			<div>{{ i }}</div>
+		{% endfor %}
+	</div>
+{% endblock %}
